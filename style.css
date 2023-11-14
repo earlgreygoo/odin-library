@@ -1,0 +1,163 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Roboto+Slab:wght@300&family=Source+Code+Pro&display=swap');
+
+* {
+
+	--arylide-yellow: hsla(53, 77%, 63%, 1);
+	--myrtle-green: hsla(180, 47%, 31%, 1);
+	--coral: hsla(18, 100%, 66%, 1);
+	--platinum: hsla(0, 0%, 90%, 1);
+	--jet: hsla(240, 1%, 23%, 1);
+
+
+	font-family: 'Libre Baskerville', serif;
+	padding: 0;
+	margin: 0;
+}
+body {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	grid-template-rows: 1fr;
+	height: 100vh;
+	width: 100vw;
+	background-color: var(--platinum)
+
+}
+
+.left-bar {
+	display:grid;
+	text-align: center;
+	grid-row: 1;
+	grid-column: 1;
+	grid-template-rows: 1fr 3fr 3fr;
+	background-color: var(--coral);
+	padding: 1rem;
+
+}
+
+.left-bar h1{
+	font-size: 6rem;
+	color: var(--jet);
+	justify-content: center;
+	letter-spacing: .5rem;
+ }
+ .bearico {
+ 	transform: scaleX(-1);
+	width:6rem;
+	height: 6rem;
+	border-radius: 2rem;
+	background-image: url("./bearIcon.jfif");
+	background-size: cover;
+}
+
+.left-bar button {
+	height: 6rem;
+	font-size: 2rem;
+	color: var(--platinum);
+	background-color: var(--myrtle-green);
+	border-radius: 1rem;
+	cursor: pointer;
+}
+
+.main {
+	padding: 4rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-auto-rows: 24vh;
+	gap: 2rem;
+}
+
+
+.libraryCard {
+	display: grid;
+	background-color: var(--coral);
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 2fr 1fr 1fr 1fr;
+	padding: 2rem;
+	gap: 1rem;
+
+	box-shadow: -10px 0px var(--myrtle-green), 0px 20px 30px var(--jet);
+}
+
+.libraryCard h1{
+	grid-row: 1;
+	grid-column: 1 / span 8;
+	text-align: center;
+}
+.libraryCard .authorName {
+	grid-row: 2;
+	font-size: 1rem;
+	grid-column: 1 / span 8;
+	text-align: center;
+}
+
+.libraryCard .page-num {
+	grid-row:3;
+	grid-column: 1 / span 8;
+	text-align: center;
+}
+
+.libraryCard .finished {
+	grid-row: 4 ;
+	grid-column: 1 / span 8;
+	text-align: center;
+}
+
+.libraryCard .completed {
+	grid-row: 4;
+	color: white;
+	background-color: var(--myrtle-green);
+	grid-column: 8;
+	width: 8rem;
+	height:2rem;
+	border-radius: 1rem;
+
+}
+
+.libraryCard .delete {
+	grid-row: 1;
+	grid-column: 9;
+	width: 2rem;
+	height: 2rem;
+	background-color: var(--jet);
+	color: var(--platinum);
+	
+	cursor: pointer;
+}
+
+dialog {
+	grid-column: 1 / span 2;
+	align-self: center;
+	top: 25vh;
+	left: 5vw;
+	border: none;
+	background-color: var(--arylide-yellow);
+}
+
+dialog button {
+	height: 2rem;
+	width: 2rem;
+	color: white;
+	background-color: var(--jet)
+}
+
+form {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	gap: 2rem;
+	padding: 1rem;
+}
+
+form div {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+}
+
+form button {
+	justify-self:center;
+	width: 8rem;
+	background-color: var(--myrtle-green);
+	color: white;
+}
+
