@@ -17,8 +17,10 @@ Dolphin Talk by Flipper McFlappy */
 
 
 
-let library = [];
+let library1 = [];
 let id = 0;
+
+
 
 
 btn.addEventListener("click", () => {
@@ -28,6 +30,49 @@ btn.addEventListener("click", () => {
 closeButton.addEventListener("click", () => {
   dialog.close();
 });
+
+class library {
+
+	constructor(bookArray){
+		this.catalogue = bookArray;
+	}
+
+	displayLibrary(){
+		let output = "";
+
+		for(let i = 0; i <= this.catalogue.length -1; i++) {
+			output += libraryCard(this.catalogue[i]);
+		
+		}
+			writeToMain(output);
+			console.log(this)
+			addDeleteListeners(this,this.catalogue)
+			addReadListener(this,this.catalogue);
+	}
+
+	addToLibrary(bookObj) {
+		this.catalogue.push(bookObj)
+	}
+
+	removeFromLibrary(bookObj){
+		let bookId = document.getElementById(`${bookObj.id}`)
+		for(let i = 0; i <= this.catalogue.length -1; i++) {
+			
+			if(bookObj.id == this.catalogue[i].id) {
+				console.log(bookObj.id, this.catalogue[i].id)	
+				this.catalogue.splice(i,1)
+			}
+		}
+		this.displayLibrary()
+	}
+
+	finishedBook(bookObj){
+		bookObj.read? bookObj.read = false : bookObj.read = true;
+		this.displayLibrary();
+	}	
+
+
+}
 
 
 
@@ -67,21 +112,28 @@ function displayLibrary(libraryArr){
 }
 
 
-function addDeleteListeners(libraryArr){
+
+
+function addDeleteListeners(lib,libraryArr){
+
 	for(let i = 0; i <= libraryArr.length -1; i++) {
 		let bookId = document.getElementById(`${libraryArr[i].id}`)
 		bookId.addEventListener('click', () =>{
-			console.log(libraryArr[i].id)
-			removeFromLibrary(libraryArr[i]);
+			console.log('yee')
+			lib.removeFromLibrary(bookId)
 		});
 	}
 }
-function addReadListener(libraryArr){
+
+
+
+
+function addReadListener(lib, libraryArr){
 	for(let i = 0; i <= libraryArr.length -1; i++) {
 		if (!libraryArr[i].read){
 			let bookId = document.getElementById(`fin+${libraryArr[i].id}`);
 			bookId.addEventListener('click',()=>{
-				finishedBook(libraryArr[i]);
+				lib.finishedBook(libraryArr[i]);
 				})
 		}
 	}
@@ -131,23 +183,7 @@ function book(title, author, pages, read){
 
 
 
-newBookForm.addEventListener("submit", (e) => {
-  e.preventDefault();
 
-  let title = document.getElementById("title");
-  let author = document.getElementById("author");
-  let pages = document.getElementById("pages");
-  let read = document.getElementById("read");
-
-  const bookObj = new book(title.value,author.value,pages.value,read.checked);
-  
-  addToLibrary(bookObj);
-  dialog.close();
-  displayLibrary(library);
- 
-
-  
-});
 
 
 
@@ -160,11 +196,36 @@ const HamsterTaxes = new book("Hamster Taxes","Barney Fizzgig",734,true);
 const CactiFriends = new book("Cacti Friends","Peter Filpper",230,true);
 
 
-addToLibrary(cheeseLand);
-addToLibrary(HamsterTaxes);
-addToLibrary(CactiFriends);
+
+let libeary = new library([]);
+
+
+
+
+libeary.addToLibrary(cheeseLand);
+libeary.addToLibrary(HamsterTaxes);
+libeary.addToLibrary(CactiFriends);
+
+
+
+newBookForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let title = document.getElementById("title");
+  let author = document.getElementById("author");
+  let pages = document.getElementById("pages");
+  let read = document.getElementById("read");
+
+  const bookObj = new book(title.value,author.value,pages.value,read.checked);
+  
+  libeary.addToLibrary(bookObj);
+  dialog.close();
+  libeary.displayLibrary();
+ 
+
+  
+});
 
 
 //writeToMain(libraryCard(HamsterTaxes));
-displayLibrary(library);
-console.table(library)
+libeary.displayLibrary();
